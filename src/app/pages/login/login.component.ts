@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { AuthService } from '../../core/auth.service';
+
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ApisService } from '../../services/apis.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,19 +19,21 @@ export class LoginComponent implements OnInit {
   };
   validationMessages = {
     'email': {
-      'required': 'Please enter your email',
-      'email': 'please enter your vaild email'
+      'required': 'Por favor introduzca su correo electrónico.',
+      'email': 'por favor ingrese su correo electrónico válido.'
     },
     'password': {
-      'required': 'please enter your password',
-      'pattern': 'The password must contain numbers and letters',
-      'minlength': 'Please enter more than 4 characters',
-      'maxlength': 'Please enter less than 25 characters',
+      'required': 'Por favor, introduzca su contraseña.',
+      'pattern': 'La contraseña debe contener números y letras.',
+      'minlength': 'Por favor ingrese más de 4 caracteres.',
+      'maxlength': 'Por favor, introduzca menos de 25 caracteres.',
     }
   };
 
   constructor(private router: Router,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              public api: ApisService) {
+
   }
 
   ngOnInit() {
@@ -55,27 +60,33 @@ export class LoginComponent implements OnInit {
   }
 
   onValueChanged(data?: any) {
-    // if (!this.userForm) {
-    //   return;
-    // }
-    // const form = this.userForm;
-    // for (const field in this.formErrors) {
-    //   if (Object.prototype.hasOwnProperty.call(this.formErrors, field)) {
-    //     this.formErrors[field] = '';
-    //     const control = form.get(field);
-    //     if (control && control.dirty && !control.valid) {
-    //       const messages = this.validationMessages[field];
-    //       for (const key in control.errors) {
-    //         if (Object.prototype.hasOwnProperty.call(control.errors, key)) {
-    //           this.formErrors[field] += messages[key] + ' ';
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+     if (!this.userForm) {
+       return;
+     }
+     const form = this.userForm;
+     for (const field in this.formErrors) {
+       if (Object.prototype.hasOwnProperty.call(this.formErrors, field)) {
+         this.formErrors[field] = '';
+         const control = form.get(field);
+         if (control && control.dirty && !control.valid) {
+           const messages = this.validationMessages[field];
+           for (const key in control.errors) {
+             if (Object.prototype.hasOwnProperty.call(control.errors, key)) {
+               this.formErrors[field] += messages[key] + ' ';
+             }
+           }
+         }
+       }
+     }
   }
   login() {
-    this.router.navigate(['/']);
+    console.log(this.userForm);
+
+    this.api.auth(this.userForm).then(data => {
+      console.log(data, 'SUCEESSS');
+      this.router.navigate(['/auth/dashboard']);
+    });
+
   }
 }
 

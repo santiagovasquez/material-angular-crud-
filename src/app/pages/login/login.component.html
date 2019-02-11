@@ -1,32 +1,31 @@
-<div fxLayout="column" fxFlexFill fxLayoutAlign="center center" style="background-image:url('../../../assets/login11.jpg');
-height: 100%;
-background-repeat: no-repeat;
-background-position: center;
-background-size: cover; ">
-    <div fxLayout="column" >
-   
+
+<div fxLayout="column" fxFlexFill fxLayoutAlign="center center" class="div-background" style="background-image:url('../../../assets/login11.jpg')">
+    <div fxLayout="column" class="div-login">
         <div class=" mat-elevation-z4">
             <mat-card>
-                <mat-card-title>User login
+                <div class="div-login">
+                    <img src="https://www.rutanmedellin.org/media/zoo/images/ingeneo_fi_bb95094642046aa3ae90161044939ca3.jpg" class="img-login" alt="">
+                </div>
+                <!--<mat-card-title>User login
                     <a class="redirect" [routerLink]="['/sigup']">Register an account</a>
-                </mat-card-title>
+                </mat-card-title>-->
                 <mat-card-content>
                     <form fxLayout="column" fxLayoutAlign="start stretch" [formGroup]="userForm" (ngSubmit)="login()">
                         <mat-form-field class="full-width">
-                          <input type="email" id="email" class="input" placeholder="Please enter your email"
+                          <input type="email" id="email" class="input" placeholder="Por favor introduzca su correo electrónico"
                                  formControlName="email" required matInput>
                         </mat-form-field>
                         <div *ngIf="formErrors.email" class="help is-danger">
                             {{ formErrors.email }}
                         </div>
                         <mat-form-field class="full-width">
-                            <input type="password" id="password" class="input" placeholder="please  enter your password"
+                            <input type="password" id="password" class="input" placeholder="Por favor, introduzca su contraseña."
                             formControlName="password" required matInput>
                         </mat-form-field>
                         <div *ngIf="formErrors.password" class="help is-danger">
                             {{ formErrors.password }}
                         </div>
-                        <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid" (click)="login()">log in</button>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid" (click)="login()">Entrar</button>
                     </form>
                 </mat-card-content>
             </mat-card>
