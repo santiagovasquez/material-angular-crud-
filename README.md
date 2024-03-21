@@ -1,7 +1,8 @@
 # CdK Admin - FREE PREMIUM ANGULAR 5 MATERIAL DESIGN+FLEX LAYOUT ADMIN PANEL
 
 
-DEMO:https://newproject-5d731.firebaseapp.com
+DEMO: [https://newproject-5d731.firebaseapp.com](https://www.snippet-developer.com/demos/angular-crud/index.html)
+See more: https://www.snippet-developer.com/tools/angular-crud
 
 to hire me, email me harikrishna266@gmail.com
 
